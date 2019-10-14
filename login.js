@@ -29,7 +29,11 @@ app.set('view engine', 'html');
 app.get('/', function(request, response) {
 	response.sendFile(path.join(__dirname + '/login.html'));
 });
-
+app.get('/here', function(req, res) {
+  console.log('Category: ' + req.query['category']);
+  res.send(req.query['category']);
+ 
+});
 var username;
 var password;
 app.post('/auth', function(request, response) {
@@ -54,13 +58,27 @@ app.post('/auth', function(request, response) {
 	}
 });
 
+
 router.get('/home', function(request, response) {
+var prisoners=[];
+var priso=[];
 
 // response.sendFile(path.join(__dirname + '/home.html'));
 	 if (request.session.loggedin) 
 		{
-		console.log(username);
-	 response.render('home.html',{username:username});
+		//console.log(username);
+		connection.query('SELECT * FROM prisoners', function(error, results, fields) {
+			//console.log(results);
+			for(var i=0;i<=1;i++)
+				{prisoners.push(results[i]);
+					priso.push(results[i].prisoner_id);
+				}
+		//console.log(prisoners);
+		for(var i=0;i<=1;i++)
+				console.log(prisoners[i]);	
+	 response.render('home.html',{username:username,prisoners:prisoners,pris:priso});
+		});
+		
 	}// } else {
 		//response.send('Please login to view this page!');
 	
