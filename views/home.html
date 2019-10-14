@@ -1,4 +1,13 @@
 <html>
-
-<p>welcome <%=username%></p>
+    
+    <body>
+      
+                <ul>
+                    <% prisoners.forEach(function(pris) { %>
+                    <li> <%= pris.pfname %> <button onclick="window.location.href='/here?category=<%= pris.prisoner_id %>' "/> <br/> </li>
+                    <% }); %>
+                </ul>
+       
+    </body>
 </html>
+
