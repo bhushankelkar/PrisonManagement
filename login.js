@@ -12,6 +12,7 @@ var connection = mysql.createConnection({
 });
 
 var app = express();
+app.set('html');
 app.use(session({
 	secret: 'secret',
 	resave: true,
@@ -19,6 +20,9 @@ app.use(session({
 }));
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
+app.set('views',__dirname+'/views');
+//app.engine('html',require('ejs').renderFile);
+app.set('view engine','html');
 
 app.get('/', function(request, response) {
 	response.sendFile(path.join(__dirname + '/login.html'));
@@ -46,9 +50,11 @@ app.post('/auth', function(request, response) {
 
 app.get('/home', function(request, response) {
 	if (request.session.loggedin) {
-		response.send('Welcome back, ' + request.session.username + '!');
-	} else {
-		response.send('Please login to view this page!');
+		//response.send('Welcome back, ' + request.session.username + '!');
+		//response.send('Welcome');
+		response.render('home.html',{username:"nisarg"}); 
+		//} else {
+		//response.send('Please login to view this page!');
 	}
 	response.end();
 });
