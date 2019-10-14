@@ -30,19 +30,22 @@ app.get('/', function(request, response) {
 	response.sendFile(path.join(__dirname + '/login.html'));
 });
 
-
+var username;
+var password;
 app.post('/auth', function(request, response) {
-	var username = request.body.username;
-	var password = request.body.password;
+	username = request.body.username;
+	 password = request.body.password;
 	if (username && password) {
-		connection.query('SELECT * FROM login WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
-			if (results.len > 0) {
-				request.session.loggedin = true;
-				request.session.username = username;
+		connection.query('SELECT * FROM login WHERE username = ? AND password = ?', [username, password] , function(error, results, fields) {
+			 if (results.length > 0) {
+			 	request.session.loggedin = true;
+			 	request.session.username = results.username;
 				response.redirect('/home');
-			} else {
-				response.send('Incorrect Username and/or Password!');
-			}			
+			 } else {
+			 	response.send('Incorrect Username and/or Password!');
+			 }		
+			// console.log(results.username);
+
 			response.end();
 		});
 	} else {
@@ -55,9 +58,10 @@ router.get('/home', function(request, response) {
 
 // response.sendFile(path.join(__dirname + '/home.html'));
 	 if (request.session.loggedin) 
-		
+		{
+		console.log(username);
 	 response.render('home.html',{username:username});
-	// } else {
+	}// } else {
 		//response.send('Please login to view this page!');
 	
 });
