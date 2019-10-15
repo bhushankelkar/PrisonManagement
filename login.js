@@ -40,9 +40,43 @@ app.get('/appoint', function(req, res) {
   
 connection.query('SELECT * FROM visitors WHERE visitor_id in (select visitor_id from has where prisoner_id=?)', req.query['category'] , function(error, results, fields) {
 	console.log(results);
-	res.render('visitors.html',{visitors:results});
+	res.render('visitors.html',{visitors:results,id:req.query['category']});
 
 });
+});
+app.get('/rouVis', function(req, res) {
+  
+res.render('addVisitor.html',{id:req.query['category']});
+});
+
+app.post('/addVis',function(request,response){
+fname=request.body.fname;
+lname=request.body.lname;
+vid=request.body.vid;
+pid=request.body.id;
+	if (fname && lname && vid) {
+		connection.query('insert into visitors(?,?,?)', [vid,fname,lname] , function(error, results, fields) {
+			 if(error)console.log("error");
+			connection.query('insert into has(?,?)',[vid,pid],function(error,result,fields){
+				if(error)console.log("error");
+			});
+			connection.query('SELECT * FROM visitors ', function(error, results, fields) {
+	console.log(results);
+
+});
+
+			 response.redirect('/');		
+			// console.log(results.username);
+
+			response.end();
+		});
+	} else {
+		response.send('Please enter Username and Password!');
+		response.end();
+	}
+
+
+
 });
 
 
