@@ -36,6 +36,14 @@ connection.query('SELECT * FROM prisoners WHERE prisoner_id=?', req.query['categ
 
 });
 });
+app.get('/appoint', function(req, res) {
+  
+connection.query('SELECT * FROM visitors WHERE visitor_id in (select visitor_id from has where prisoner_id=?)', req.query['category'] , function(error, results, fields) {
+	console.log(results);
+	res.render('visitors.html',{visitors:results});
+
+});
+});
 
 
 
