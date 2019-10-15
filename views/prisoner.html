@@ -10,13 +10,13 @@
                     	DIN:<%=pris.dateofin %><br/>
                     	DOUT:<%=pris.dateofout %><br/>
                     	AGE:<%=pris.age %><br/>
-
+                    	<button onclick="window.location.href='/appoint?category=<%= pris.prisoner_id %>'">appointment</button>
                     
                     </li>
                     <% }); %>
                 </ul>
                 <button onclick="window.location.href='/' "/>
-               
+
 	</body>
 
 </html>
