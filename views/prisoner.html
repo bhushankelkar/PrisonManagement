@@ -1,0 +1,21 @@
+<html>
+	<body>
+		
+		<ul>
+                    <% prisoner.forEach(function(pris) { %>
+                    <li> NAME:<%= pris.pfname %>  <%=pris.lname %><br/> 
+                    	PRISONER ID <%=pris.prisoner_id %><br/>
+                    	  
+                    	ADDRESS:<%=pris.paddress %><br/>
+                    	DIN:<%=pris.dateofin %><br/>
+                    	DOUT:<%=pris.dateofout %><br/>
+                    	AGE:<%=pris.age %><br/>
+
+                    
+                    </li>
+                    <% }); %>
+                </ul>
+                <button onclick="window.location.href='/' "/>
+	</body>
+
+</html>
