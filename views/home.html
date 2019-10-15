@@ -61,8 +61,8 @@
             </div>
         	<p>welcome <%=username%></p>
                 <ul>
-                    <% prisoners.forEach(function(pri) {%> 
-                    <li> <%= pri %> <button onclick="window.location.href='/here?category=<%= pri %>' "/> <br/> </li>
+                    <% prisoners.forEach(function(pris) {%> 
+                    <li> <%= pris.pfname %> <button onclick="window.location.href='/here?category=<%= pris.prisoner_id %>' "/> <br/> </li>
                     <% }); %>
                 </ul>
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
