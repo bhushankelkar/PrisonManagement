@@ -58,9 +58,16 @@ app.post('/auth', function(request, response) {
 	}
 });
 
+app.get('/login',function(request,response){
+	response.sendFile(path.join(__dirname + '/login.html'));
+});
+app.get('/about',function(request,response){
+	response.sendFile(path.join(__dirname + '/about.html'));
+});
 
 router.get('/home', function(request, response) {
 var prisoners=[];
+var prisname=[];
 var priso=[];
 
 // response.sendFile(path.join(__dirname + '/home.html'));
