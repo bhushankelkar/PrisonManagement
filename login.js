@@ -48,7 +48,7 @@ app.get('/rouVis', function(req, res) {
   
 res.render('addVisitor.html',{id:req.query['category']});
 });
-app.get('/rouVis', function(req, res) {
+app.get('/rouCriminal', function(req, res) {
   
 res.render('addCriminal.html');
 });
