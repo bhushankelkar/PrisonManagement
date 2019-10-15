@@ -2,10 +2,10 @@ var mysql = require('mysql');
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
-
+var admin_id;
 var path = require('path');
 var router=express.Router();
-
+global.admin_id;
 var connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
@@ -31,19 +31,31 @@ app.get('/', function(request, response) {
 });
 app.get('/here', function(req, res) {
   console.log('Category: ' + req.query['category']);
-  res.send(req.query['category']);
- 
+connection.query('SELECT * FROM prisoners WHERE prisoner_id=?', req.query['category'] , function(error, results, fields) {
+	res.render('prisoner.html',{prisoner:results});
+
 });
-var username;
-var password;
+});
+
+
+
 app.post('/auth', function(request, response) {
 	username = request.body.username;
 	 password = request.body.password;
+	
 	if (username && password) {
 		connection.query('SELECT * FROM login WHERE username = ? AND password = ?', [username, password] , function(error, results, fields) {
 			 if (results.length > 0) {
+
+			 	console.log(results);
 			 	request.session.loggedin = true;
 			 	request.session.username = results.username;
+			 	request.session.password=results.password;
+			 	id=results[0].admin_id;
+			 	
+			 	console.log(username);
+			 	console.log(password);
+			 	console.log(id);
 				response.redirect('/home');
 			 } else {
 			 	response.send('Incorrect Username and/or Password!');
@@ -58,38 +70,33 @@ app.post('/auth', function(request, response) {
 	}
 });
 
-app.get('/login',function(request,response){
-	response.sendFile(path.join(__dirname + '/login.html'));
-});
-app.get('/about',function(request,response){
-	response.sendFile(path.join(__dirname + '/about.html'));
-});
 
 router.get('/home', function(request, response) {
 var prisoners=[];
-var prisname=[];
 var priso=[];
 
 // response.sendFile(path.join(__dirname + '/home.html'));
 	 if (request.session.loggedin) 
 		{
-		//console.log(username);
-		connection.query('SELECT * FROM prisoners', function(error, results, fields) {
-			//console.log(results);
+		console.log(id);
+		connection.query('SELECT * FROM prisoners p where p.section_id  = (select  s.section_id from section s ,login l where s.admin_id=l.admin_id and l.admin_id=?)',[id],
+			function(error, results, fields) {
+			 console.log(results);
 			for(var i=0;i<=results.length-1;i++)
-				{
-					prisoners.push(results[i].prisoner_id);
-					//priso.push(results[i].prisoner_id);
-				}
-		//console.log(prisoners);
-		for(var i=0;i<=results.length;i++)
-				console.log(prisoners[i]);	
-	 response.render('home.html',{username:username,prisoners:prisoners});
-		});
+			 	{prisoners.push(results[i]);
+			 		//priso.push(results[i].prisoner_id);
+			 	}
+		console.log(prisoners);
+		 for(var i=0;i<=1;i++)
+		 		console.log(prisoners[i]);	
+	  response.render('home.html',{username:username,prisoners:prisoners});
+		 
+	});
 		
-	}// } else {
-		//response.send('Please login to view this page!');
+	} else {
+	response.send('Please login to view this page!');
 	
+}
 });
 app.use('/', router);
 
