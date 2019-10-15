@@ -47,24 +47,100 @@
     .topnav-right {
       float: right;
     }
-            </style>
+    body, html {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bg-image {
+  /* The image used */
+  background-image: url("https://images.unsplash.com/photo-1546450334-03038e2eaa39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=753&q=80");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+  min-height: 300px;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 50%;
+  padding: 20px;
+  text-align: center;
+}
+
+       </style>
         </head>
         <body>
              <div>
-                 <div class="topnav">
+               <div class="topnav">
                         <button class="active" onclick="window.location.href='/'">PRISONXT</button>
                             <div class="topnav-right">
                           <a href="/about">Profile</a>
                             </div>
                           </div>
-                       
+                          <p>welcome <%=username%></p>
+                          <div class="bg-image"></div>
+                        <!--  <div class="bg-text">-->
+                                
+                               
+                                <div class="bg-text">
+                                                  
+                                        <table class="table table-hover">
+                                          <thead>
+                                            <tr>
+                                              <th>Firstname</th>
+                                              
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                        
+                                        <% prisoners.forEach(function(pris) {%> 
+                                        <td><%= pris.pfname %></td>
+                                             <td><button onclick="window.location.href='/here?category=<%= pris.prisoner_id %>' ">View Details</button></td>
+                                             <% }); %>
+                                            </tr>
+                                          </tbody>
+                                          </table>
+                                          </div>
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                               
+                                        
+                            <!-- </div>-->
+                         
             </div>
-        	<p>welcome <%=username%></p>
-                <ul>
-                    <% prisoners.forEach(function(pris) {%> 
-                    <li> <%= pris.pfname %> <button onclick="window.location.href='/here?category=<%= pris.prisoner_id %>' "/> <br/> </li>
-                    <% }); %>
-                </ul>
+        	
             <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
