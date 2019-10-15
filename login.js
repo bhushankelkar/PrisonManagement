@@ -65,16 +65,13 @@ pid=request.body.id;
 
 });
 
-			 response.redirect('/');		
+			 	response.redirect('/home');		
 			// console.log(results.username);
 
-			response.end();
+			//response.end();
 		});
-	} else {
-		response.send('Please enter Username and Password!');
-		response.end();
-	}
-
+	} 
+	response.redirect('/home');	
 
 
 });

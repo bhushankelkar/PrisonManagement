@@ -1,45 +1,13 @@
-<!doctype html>
-<html lang="en">
-    <head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta charset="utf-8">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-		<title>Login</title>
-		<style>
-			/*.image{
-  background-image: url("/Prison-design-lead-edited.jpg");
-}
-		.login-form {
-			width: 300px;
-			margin: 0 auto;
-			font-family: Tahoma, Geneva, sans-serif;
-		}
-		.login-form h1 {
-			text-align: center;
-			color: #4d4d4d;
-			font-size: 24px;
-			padding: 20px 0 20px 0;
-		}
-		.login-form input[type="password"],
-		.login-form input[type="text"] {
-			width: 100%;
-			padding: 15px;
-			border: 1px solid #dddddd;
-			margin-bottom: 15px;
-			box-sizing:border-box;
-		}
-		.login-form input[type="submit"] {
-			width: 100%;
-			padding: 15px;
-			background-color: #535b63;
-			border: 0;
-			box-sizing: border-box;
-			cursor: pointer;
-			font-weight: bold;
-			color: #ffffff;
-		}*/
-		body, html {
+<html>
+		<html lang="en">
+				<head>
+					<meta charset="utf-8">
+					<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+					<meta charset="utf-8">
+					<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+					<title>Login</title>
+					<style>
+							body, html {
   height: 100%;
 }
 
@@ -49,7 +17,7 @@
 
 .bg-img {
   /* The image used */
-  background-image: url("https://images.unsplash.com/photo-1546450334-03038e2eaa39?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=753&q=80");
+  background-image: url("https://images.unsplash.com/photo-1521785241181-092e2c5d2f4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=375&q=80");
 
   /* Control the height of the image */
   min-height: 544px;
@@ -131,31 +99,29 @@ input[type=text]:focus, input[type=password]:focus {
   float: right;
 }
 
-		</style>
-	</head>
-	<body>
-		 <div>
-				<div class="topnav">
-						<a class="inactive" href="/">PRISONXT</a>
-						
-						<div class="topnav-right">
-						 
-						  <a href="/about.html">About</a>
-						</div>
-					  </div>
-					<div class="bg-img">
+					</style></head>
+<body>
+
+		<div class="topnav">
+				<a class="inactive" href="/">PRISONXT</a>
+		</div>
+
+
+
+		<div class="bg-img">
+	<form action="addVis" method="POST" class="container">
+				<input type="text" name="fname" placeholder="First name" required>
+				<input type="text" name="lname" placeholder="Last name" required>
+				<input type="number" name="vid" placeholder="visitor id" required>
+				<input type="number" name="id" placeholder="Prisoners id" value=<%=id%> />
+				<button type="submit" class="btn">Submit</button>
 			
-			<form action="auth" method="POST" class="container">
-					<h1>Login</h1>
-				<input type="text" name="username" placeholder="Username" required>
-				<input type="password" name="password" placeholder="Password" required>
-				<button type="submit" class="btn">Login</button>
+
 			</form>
 		</div>
-		</div>
-	</div>	
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	</body>
+	
+</body>
 </html>

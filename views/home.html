@@ -94,32 +94,34 @@
                <div class="topnav">
                         <button class="active" onclick="window.location.href='/'">PRISONXT</button>
                             <div class="topnav-right">
-                          <a href="/about">Profile</a>
+                          <a href="/profile.html">Profile</a>
                             </div>
                           </div>
                           <p>welcome <%=username%></p>
-                          <div class="bg-image"></div>
+                         
                         <!--  <div class="bg-text">-->
                                 
                                
-                                <div class="bg-text">
+                                <div class="container">
                                                   
                                         <table class="table table-hover">
                                           <thead>
                                             <tr>
                                               <th>Firstname</th>
-                                              
+                                              <th>Details</th>
                                             </tr>
                                           </thead>
                                           <tbody>
+                                                <% prisoners.forEach(function(pris) {%> 
                                             <tr>
                         
-                                        <% prisoners.forEach(function(pris) {%> 
+                                       
                                         <td><%= pris.pfname %></td>
                                              <td><button onclick="window.location.href='/here?category=<%= pris.prisoner_id %>' ">View Details</button></td>
-                                             <% }); %>
+                                            
                                             </tr>
-                                          </tbody>
+                                            <% }); %>
+                                        </tbody>
                                           </table>
                                           </div>
                                
