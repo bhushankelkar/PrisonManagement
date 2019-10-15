@@ -49,8 +49,8 @@ app.get('/rouVis', function(req, res) {
 res.render('addVisitor.html',{id:req.query['category']});
 });
 app.get('/rouCriminal', function(req, res) {
-  
-res.render('addCriminal.html');
+  sid=req.query['category'];
+res.render('addCriminal.html',{sid:sid});
 });
 app.post('/addVis',function(request,response){
 fname=request.body.fname;
@@ -148,7 +148,7 @@ var priso=[];
 		console.log(prisoners);
 		 for(var i=0;i<=1;i++)
 		 		console.log(prisoners[i]);	
-	  response.render('home.html',{username:username,prisoners:prisoners});
+	  response.render('home.html',{username:username,prisoners:prisoners,sid:prisoners[0].section_id});
 		 
 	});
 		
