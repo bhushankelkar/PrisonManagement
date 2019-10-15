@@ -54,22 +54,36 @@ fname=request.body.fname;
 lname=request.body.lname;
 vid=request.body.vid;
 pid=request.body.id;
-	if (fname && lname && vid) {
-		connection.query('insert into visitors(?,?,?)', [vid,fname,lname] , function(error, results, fields) {
+var res=[];
+	if (fname && lname && vid) {                                                                                                                            
+		connection.query('insert into visitors values (?,?,?)', [vid,fname,lname] , function(error, results, fields) {
 			 if(error)console.log("error");
-			connection.query('insert into has(?,?)',[vid,pid],function(error,result,fields){
+			
+
+
+			connection.query('insert into has values(?,?)',[vid,pid],function(error,result,fields){
 				if(error)console.log("error");
+				connection.query('SELECT * FROM visitors WHERE visitor_id in (select visitor_id from has where prisoner_id=?)', pid , function(error, results, fields) {
+			
+						 
+			
+});
+
 			});
-			connection.query('SELECT * FROM visitors ', function(error, results, fields) {
-	console.log(results);
+	// 		connection.query('SELECT * FROM visitors ', function(error, results, fields) {
+	// console.log(results);
+
+	
 
 });
 
-			 response.redirect('/');		
 			// console.log(results.username);
+console.log("here");
+
+response.redirect('/appoint?category='+pid);	
 
 			response.end();
-		});
+		
 	} else {
 		response.send('Please enter Username and Password!');
 		response.end();
