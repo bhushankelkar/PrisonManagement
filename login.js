@@ -79,15 +79,46 @@ var res=[];
 	
 
 });
-
+}
+});
 			// console.log(results.username);
+app.post('/addCriminal',function(request,response){
+fname=request.body.fname;
+lname=request.body.lname;
+pid=request.body.pid;
+address=request.body.address;
+datei=request.body.doi;
+datej=request.body.dou;
+age=request.body.age;
+sid=request.body.section_id;
+cid=request.body.cid;
+var res=[];
+	if (fname && lname && sid) {                                                                                                                            
+		connection.query('insert into prisoners values (?,?,?,?,?,?,?,?)', [pid,fname,lname,address,datei,datej,age,sid] , function(error, results, fields) {
+			 if(error)console.log("error");
+			
+
+
+			connection.query('insert into commited values(?,?)',[cid,pid],function(error,result,fields){
+					  if(error)console.log("error");
+			
+});
+
+			
+	// 		connection.query('SELECT * FROM visitors ', function(error, results, fields) {
+	// console.log(results);
+
+	
+
+
 console.log("here");
 
-response.redirect('/appoint?category='+pid);	
+response.redirect('back');	
 
 			response.end();
 		
-	} else {
+	});
+	}else {
 		response.send('Please enter Username and Password!');
 		response.end();
 	}
